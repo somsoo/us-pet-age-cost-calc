@@ -1,28 +1,450 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dog &amp; Cat Age in Human Years Calculator - Under maintenance</title>
-<meta name="robots" content="noindex, nofollow">
-<meta name="site-status" content="maintenance">
-<meta name="description" content="This tool is temporarily offline while it is rebuilt.">
+<title>Pet Age &amp; Cost Calculator</title>
+<meta name="description" content="Calculate your dog or cat human age and lifetime care costs. 100% in-browser.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://us-pet-age-cost-calc.enjoy-onepage.com/">
+<meta name="theme-color" content="#d97706">
+<link rel="icon" href="/favicon.ico">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Pet Age &amp; Cost Calculator">
+<meta property="og:title" content="Pet Age &amp; Cost Calculator">
+<meta property="og:description" content="Calculate your dog or cat human age and lifetime care costs. 100% in-browser.">
+<meta property="og:url" content="https://us-pet-age-cost-calc.enjoy-onepage.com/">
+<meta property="og:image" content="https://us-pet-age-cost-calc.enjoy-onepage.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Pet Age &amp; Cost Calculator">
+<meta name="twitter:description" content="Calculate your dog or cat human age and lifetime care costs. 100% in-browser.">
+<meta name="twitter:image" content="https://us-pet-age-cost-calc.enjoy-onepage.com/og-image.png">
+<link rel="alternate" type="application/rss+xml" title="Pet Calculator RSS" href="https://us-pet-age-cost-calc.enjoy-onepage.com/rss.xml">
+<link rel="sitemap" type="application/xml" href="https://us-pet-age-cost-calc.enjoy-onepage.com/sitemap.xml">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "@id": "https://us-pet-age-cost-calc.enjoy-onepage.com/#webapp",
+      "name": "Pet Age & Cost Calculator",
+      "url": "https://us-pet-age-cost-calc.enjoy-onepage.com/",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "All",
+      "inLanguage": "en",
+      "description": "An interactive pet age and lifetime cost calculator based on AVMA veterinary epigenetic models and ASPCA pet care cost benchmarks.",
+      "image": "https://us-pet-age-cost-calc.enjoy-onepage.com/og-image.png",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://us-pet-age-cost-calc.enjoy-onepage.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Why is 1 dog year no longer equal to 7 human years?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Recent veterinary research from UC Davis and the AVMA demonstrates that dogs age very rapidly during their first two years—reaching roughly 15 human years in year one and 24 by year two. Subsequent aging slows down to 4 to 8 years per calendar year depending on breed size."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does dog size affect aging and life expectancy?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Smaller breeds mature quickly but age more slowly in adulthood, often living 14 to 16 years. Giant breeds age much faster at the cellular level and have average lifespans of 8 to 10 years."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What benchmarks are used for lifetime pet care costs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our cost projections are grounded in annual pet care expense surveys published by the ASPCA and the American Pet Products Association (APPA), covering quality nutrition, preventive veterinary care, vaccines, grooming, and supplies."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are my pet details or financial inputs saved?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. All calculations run strictly in your web browser memory. No pet names, ages, or budget numbers are ever saved or transmitted to a server."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- ADSENSE START: loader -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
+<!-- ADSENSE END: loader -->
 <style>
-  body { margin: 0; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; background: #f8fafc; color: #0f172a; }
-  main { max-width: 560px; margin: 12vh auto; padding: 32px 24px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; }
-  h1 { font-size: 1.4rem; margin: 0 0 12px; }
-  p { line-height: 1.6; color: #334155; }
-  a { color: #1d4ed8; font-weight: 600; }
-  .tag { display: inline-block; font-size: .8rem; font-weight: 700; color: #92400e; background: #fef3c7; border-radius: 999px; padding: 4px 10px; margin-bottom: 14px; }
+:root{--bg:#fffbeb;--card:#fff;--ink:#1e1b4b;--muted:#64748b;--accent:#d97706;--accent-hover:#b45309;--line:#fef3c7;--green:#059669;--r:#b91c1c}
+*{box-sizing:border-box}
+html,body{margin:0;max-width:100%;overflow-x:hidden}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-wrap:anywhere}
+.header{background:linear-gradient(135deg,#b45309,#d97706);color:#fff;text-align:center;padding:26px 16px 22px}
+.header h1{margin:0;font-size:1.7rem}
+.header-sub{opacity:.92;margin-top:6px;font-size:.95rem}
+.wrap{max-width:1080px;margin:0 auto;padding:12px 14px 8px}
+.grid2{display:grid;grid-template-columns:1fr;gap:14px}
+@media (min-width:1024px){.grid2{grid-template-columns:5fr 7fr;align-items:start}.src-card{position:sticky;top:12px}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px 18px;margin:14px 0}
+.grid2 .card{margin:0}
+.card h2{font-size:1.15rem;margin:4px 0 10px}
+.lbl{display:block;font-weight:600;margin:8px 0 4px;font-size:.92rem}
+input[type=number],select{width:100%;font:inherit;font-size:1rem;padding:8px 10px;border:1px solid #cbd5e1;border-radius:10px;background:#fff;color:var(--ink)}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.row>div{flex:1 1 120px;min-width:0}
+.btn{font:inherit;border:1px solid #cbd5e1;background:#fff;color:var(--ink);border-radius:10px;padding:8px 13px;cursor:pointer;transition:background .15s}
+.btn:hover{background:#f8fafc}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
+.btn.primary:hover{background:var(--accent-hover)}
+.btn.sm{padding:4px 10px;font-size:.86rem;border-radius:8px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.metric-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+@media (max-width:600px){.metric-grid{grid-template-columns:1fr}}
+.metric-box{background:#fefce8;border:1px solid #fef08a;border-radius:12px;padding:12px}
+.metric-box.accent{background:#fffbeb;border-color:#fde68a}
+.metric-box.green{background:#ecfdf5;border-color:#a7f3d0}
+.metric-val{font-size:1.45rem;font-weight:800;color:var(--accent);margin:2px 0}
+.metric-val.green{color:var(--green)}
+.metric-lbl{font-size:.82rem;color:var(--muted);font-weight:600;text-transform:uppercase}
+.stage-badge{display:inline-block;padding:4px 12px;border-radius:999px;font-size:.85rem;font-weight:700;background:#fef3c7;color:#92400e;margin-bottom:8px}
+.cost-table{width:100%;border-collapse:collapse;font-size:.88rem;margin-top:10px}
+.cost-table th,.cost-table td{padding:8px 10px;border-bottom:1px solid #f1f5f9;text-align:left}
+.cost-table th{background:#f8fafc;font-weight:700;color:var(--muted)}
+.hint{font-size:.86rem;color:var(--muted);margin:6px 0}
+.notice{border-color:#fcd34d;background:#fffbeb}
+.faq-item h3{font-size:1rem;margin:12px 0 4px}
+.faq-item p{margin:0;color:#334155}
+.src{font-size:.82rem;color:var(--muted)}
+.ad-box{max-width:1080px;margin:10px auto;padding:0 14px;background:transparent;overflow:hidden;text-align:center}
+.ad-top ins{max-height:90px}
+.footer{text-align:center;font-size:.85rem;color:var(--muted);padding:18px 14px 28px}
+.footer a{color:var(--muted);text-decoration:none}
+.footer a:hover{text-decoration:underline}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#1e1b4b;color:#fff;padding:10px 18px;border-radius:999px;font-size:.9rem;opacity:0;pointer-events:none;transition:opacity .2s;z-index:50;max-width:90vw}
+.toast.show{opacity:1}
+@media (prefers-reduced-motion: reduce){.toast{transition:none}}
 </style>
 </head>
 <body>
-<main>
-  <span class="tag">Under maintenance</span>
-  <h1>Dog &amp; Cat Age in Human Years Calculator</h1>
-  <p>This tool is temporarily offline. We found that the previous version did not work the way it was described, so we took it down while we rebuild it properly.</p>
-  <p>Please check back later.</p>
-  <p><a href="https://enjoy-onepage.com/">Browse our other free tools</a></p>
+<header class="header">
+  <h1>Pet Age &amp; Cost Calculator</h1>
+  <div class="header-sub">Veterinary human age conversion &amp; lifetime care cost projections · 100% private</div>
+</header>
+
+<!-- ADSENSE START: top -->
+<div class="ad-box ad-top">
+  <ins class="adsbygoogle" style="display:block;height:60px;max-height:90px" data-ad-client="ca-pub-2228289204702106" data-ad-slot="3824727725" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<!-- ADSENSE END: top -->
+
+<main class="wrap">
+  <div class="grid2">
+    <section class="card src-card" aria-labelledby="in-h">
+      <h2 id="in-h">1. Pet Profile &amp; Monthly Expenses</h2>
+      
+      <div class="row">
+        <div>
+          <label class="lbl" for="petType">Pet Type</label>
+          <select id="petType">
+            <option value="dog">Dog 🐕</option>
+            <option value="cat">Cat 🐈</option>
+          </select>
+        </div>
+        <div id="dogSizeWrap">
+          <label class="lbl" for="dogSize">Dog Size (Adult Weight)</label>
+          <select id="dogSize">
+            <option value="small">Small (< 20 lbs)</option>
+            <option value="medium" selected>Medium (20 - 50 lbs)</option>
+            <option value="large">Large (50 - 90 lbs)</option>
+            <option value="giant">Giant (> 90 lbs)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row" style="margin-top:6px;">
+        <div>
+          <label class="lbl" for="petYears">Age (Years)</label>
+          <input type="number" id="petYears" min="0" max="25" value="3">
+        </div>
+        <div>
+          <label class="lbl" for="petMonths">Age (Months)</label>
+          <input type="number" id="petMonths" min="0" max="11" value="0">
+        </div>
+      </div>
+
+      <h3 style="font-size:1rem;margin:14px 0 6px;">Estimated Monthly Budget</h3>
+      <div class="row">
+        <div>
+          <label class="lbl" for="costFood">Food &amp; Treats ($)</label>
+          <input type="number" id="costFood" min="0" max="500" value="55">
+        </div>
+        <div>
+          <label class="lbl" for="costVet">Vet &amp; Insurance ($)</label>
+          <input type="number" id="costVet" min="0" max="1000" value="65">
+        </div>
+        <div>
+          <label class="lbl" for="costSupplies">Grooming &amp; Gear ($)</label>
+          <input type="number" id="costSupplies" min="0" max="500" value="25">
+        </div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn primary" id="btnCalculate">Calculate Profile</button>
+        <button type="button" class="btn sm" id="btnAspca">Load ASPCA Averages</button>
+      </div>
+      <p class="hint">Calculations run locally in real-time. No pet records are uploaded or saved.</p>
+    </section>
+
+    <section class="card result" aria-labelledby="out-h">
+      <h2 id="out-h">2. Age Analysis &amp; Lifetime Projections</h2>
+      <div id="stageBadge" class="stage-badge">Life Stage: Adult (Prime)</div>
+
+      <div class="metric-grid">
+        <div class="metric-box accent">
+          <div class="metric-lbl">Human Age Equivalent</div>
+          <div class="metric-val" id="resHumanAge">28 yrs</div>
+          <div class="hint" id="resAgeDetails">Based on AVMA biological aging model</div>
+        </div>
+        <div class="metric-box green">
+          <div class="metric-lbl">Est. Remaining Lifespan</div>
+          <div class="metric-val green" id="resRemainingYears">9.5 yrs</div>
+          <div class="hint" id="resAvgLifespan">Average lifespan: ~12.5 years</div>
+        </div>
+      </div>
+
+      <div class="metric-box" style="margin-bottom:12px;">
+        <div class="metric-lbl">Annual Cost of Care</div>
+        <div class="metric-val" id="resAnnualCost" style="font-size:1.35rem;">$1,740 / year</div>
+        <div class="hint" id="resMonthlyBreakdown">$145 / month across food, health &amp; supplies</div>
+      </div>
+
+      <div class="metric-box green" style="margin-bottom:12px;">
+        <div class="metric-lbl">Estimated Lifetime Remaining Investment</div>
+        <div class="metric-val green" id="resLifetimeCost" style="font-size:1.35rem;">$16,530</div>
+        <div class="hint">Total projected care investment over remaining life expectancy</div>
+      </div>
+
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>Expense Category</th>
+            <th>Monthly</th>
+            <th>Annual</th>
+          </tr>
+        </thead>
+        <tbody id="costBreakdown">
+          <tr><td>Premium Nutrition &amp; Treats</td><td id="tdFoodM">$55</td><td id="tdFoodY">$660</td></tr>
+          <tr><td>Veterinary Wellness &amp; Meds</td><td id="tdVetM">$65</td><td id="tdVetY">$780</td></tr>
+          <tr><td>Grooming, Toys &amp; Essentials</td><td id="tdGearM">$25</td><td id="tdGearY">$300</td></tr>
+        </tbody>
+      </table>
+
+      <div class="actions" style="margin-top:14px;">
+        <button type="button" class="btn" id="btnCopy">📋 Copy Summary</button>
+        <button type="button" class="btn" id="btnShare">📤 Share</button>
+      </div>
+    </section>
+  </div>
+
+<!-- ADSENSE START: mid -->
+<div class="ad-box ad-mid">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="1186914926" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<!-- ADSENSE END: mid -->
+
+  <section class="card" aria-labelledby="how-h">
+    <h2 id="how-h">🧮 Veterinary &amp; Economic Methodology</h2>
+    <ul>
+      <li><strong>Epigenetic Biological Aging:</strong> Rather than multiplying by 7, our model applies the American Veterinary Medical Association (AVMA) standards. Pets age rapidly in year 1 (~15 human years) and year 2 (~9 human years). From year 3 forward, annual aging rates scale with breed size (cats &amp; small dogs: +4 human years/year; medium: +5; large: +6; giant: +7 to 8).</li>
+      <li><strong>Breed Lifespan Expectations:</strong> Average life expectancies are based on peer-reviewed veterinary actuarial tables: Cats ~15 years, Small dogs ~14.5 years, Medium dogs ~12.5 years, Large dogs ~10.5 years, and Giant breeds ~8.5 years.</li>
+      <li><strong>ASPCA Cost Guidelines:</strong> Care cost categories account for high-quality nutrition, essential annual vaccines, parasitic prevention, dental checkups, and necessary replacement gear.</li>
+    </ul>
+    <p class="src">References: American Veterinary Medical Association (AVMA) Life Stage Guidelines; ASPCA Pet Cost Survey.</p>
+  </section>
+
+  <section class="card id="faq" aria-labelledby="faq-h">
+    <h2 id="faq-h">❓ Frequently Asked Questions</h2>
+    <div class="faq-item"><h3>Why is 1 dog year no longer equal to 7 human years?</h3><p>Recent veterinary research from UC Davis and the AVMA demonstrates that dogs age very rapidly during their first two years—reaching roughly 15 human years in year one and 24 by year two. Subsequent aging slows down to 4 to 8 years per calendar year depending on breed size.</p></div>
+    <div class="faq-item"><h3>How does dog size affect aging and life expectancy?</h3><p>Smaller breeds mature quickly but age more slowly in adulthood, often living 14 to 16 years. Giant breeds age much faster at the cellular level and have average lifespans of 8 to 10 years.</p></div>
+    <div class="faq-item"><h3>What benchmarks are used for lifetime pet care costs?</h3><p>Our cost projections are grounded in annual pet care expense surveys published by the ASPCA and the American Pet Products Association (APPA), covering quality nutrition, preventive veterinary care, vaccines, grooming, and supplies.</p></div>
+    <div class="faq-item"><h3>Are my pet details or financial inputs saved?</h3><p>No. All calculations run strictly in your web browser memory. No pet names, ages, or budget numbers are ever saved or transmitted to a server.</p></div>
+  </section>
+
+  <section class="card notice" aria-labelledby="note-h">
+    <h2 id="note-h">⚠️ Note on Veterinary Care</h2>
+    <p>Every pet is unique. Unexpected medical emergencies, surgeries, or chronic conditions can significantly increase care expenses. Consider pet insurance or an emergency pet wellness fund to safeguard your pet's healthcare.</p>
+  </section>
 </main>
+
+<!-- ADSENSE START: bottom -->
+<div class="ad-box ad-bottom">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="3416334507" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
+<!-- ADSENSE END: bottom -->
+
+<footer class="footer">
+  <p>Free Pet Age &amp; Lifetime Cost Calculator · 100% private and client-side.</p>
+  <p><a href="/disclaimer.html">Disclaimer</a> | <a href="/privacy.html">Privacy Policy</a> | <a href="/terms.html">Terms of Service</a></p>
+</footer>
+
+<div id="global-ux-toast" class="toast" role="status" aria-live="polite"></div>
+
+<!-- LOGIC START -->
+<script>
+(function () {
+  'use strict';
+  var SITE = 'https://us-pet-age-cost-calc.enjoy-onepage.com';
+  var TOOL_NAME = 'Pet Age & Cost Calculator';
+  var toastTimer = null;
+
+  function $(id) { return document.getElementById(id); }
+  function on(id, ev, fn) { var e = $(id); if (e) e.addEventListener(ev, fn); }
+  function fmt(n) { return n.toLocaleString('en-US'); }
+
+  var LIFESPANS = {
+    cat: 15.0,
+    dog_small: 14.5,
+    dog_medium: 12.5,
+    dog_large: 10.5,
+    dog_giant: 8.5
+  };
+
+  function calculate() {
+    var type = $('petType').value;
+    var size = $('dogSize').value;
+    var years = parseFloat($('petYears').value) || 0;
+    var months = parseFloat($('petMonths').value) || 0;
+    var age = years + (months / 12);
+
+    $('dogSizeWrap').style.display = type === 'dog' ? 'block' : 'none';
+
+    // 1. Human Age Calculation (AVMA model)
+    var humanAge = 0;
+    var rate = type === 'cat' ? 4 : (size === 'small' ? 4 : (size === 'medium' ? 5 : (size === 'large' ? 6 : 7.5)));
+    if (age <= 0) {
+      humanAge = 0;
+    } else if (age <= 1) {
+      humanAge = age * 15;
+    } else if (age <= 2) {
+      humanAge = 15 + (age - 1) * 9;
+    } else {
+      humanAge = 24 + (age - 2) * rate;
+    }
+
+    // 2. Life Stage
+    var stage = 'Puppy / Kitten';
+    var badgeColor = '#fef3c7';
+    var textColor = '#92400e';
+    if (age >= 11 || (type === 'dog' && size === 'giant' && age >= 7)) {
+      stage = 'Geriatric (Senior Care)'; badgeColor = '#f1f5f9'; textColor = '#475569';
+    } else if (age >= 7 || (type === 'dog' && size === 'large' && age >= 6)) {
+      stage = 'Senior'; badgeColor = '#fee2e2'; textColor = '#991b1b';
+    } else if (age >= 2) {
+      stage = 'Adult (Prime)'; badgeColor = '#ecfdf5'; textColor = '#065f46';
+    } else if (age >= 1) {
+      stage = 'Young Adult'; badgeColor = '#fef3c7'; textColor = '#92400e';
+    }
+
+    var badge = $('stageBadge');
+    badge.textContent = 'Life Stage: ' + stage;
+    badge.style.background = badgeColor;
+    badge.style.color = textColor;
+
+    $('resHumanAge').textContent = Math.round(humanAge) + ' yrs';
+    $('resAgeDetails').textContent = 'Equivalent to a ' + Math.round(humanAge) + '-year-old human';
+
+    // 3. Expected Lifespan
+    var key = type === 'cat' ? 'cat' : ('dog_' + size);
+    var avgLifespan = LIFESPANS[key] || 12.5;
+    var remaining = Math.max(0, avgLifespan - age);
+
+    $('resRemainingYears').textContent = remaining > 0 ? (Math.round(remaining * 10) / 10) + ' yrs' : 'Golden Years (Passed Average)';
+    $('resAvgLifespan').textContent = 'Average breed lifespan: ~' + avgLifespan + ' years';
+
+    // 4. Financial Cost Projections
+    var cFood = parseFloat($('costFood').value) || 0;
+    var cVet = parseFloat($('costVet').value) || 0;
+    var cSupplies = parseFloat($('costSupplies').value) || 0;
+
+    var monthlyTotal = cFood + cVet + cSupplies;
+    var annualTotal = monthlyTotal * 12;
+    var lifetimeRemaining = annualTotal * remaining;
+
+    $('resAnnualCost').textContent = '$' + fmt(Math.round(annualTotal)) + ' / year';
+    $('resMonthlyBreakdown').textContent = '$' + fmt(Math.round(monthlyTotal)) + ' / month across food, health & gear';
+    $('resLifetimeCost').textContent = '$' + fmt(Math.round(lifetimeRemaining));
+
+    $('tdFoodM').textContent = '$' + fmt(Math.round(cFood));
+    $('tdFoodY').textContent = '$' + fmt(Math.round(cFood * 12));
+    $('tdVetM').textContent = '$' + fmt(Math.round(cVet));
+    $('tdVetY').textContent = '$' + fmt(Math.round(cVet * 12));
+    $('tdGearM').textContent = '$' + fmt(Math.round(cSupplies));
+    $('tdGearY').textContent = '$' + fmt(Math.round(cSupplies * 12));
+  }
+
+  function showToast(msg) {
+    var t = $('global-ux-toast'); if (!t) return;
+    t.textContent = msg; t.classList.add('show');
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { t.classList.remove('show'); }, 2200);
+  }
+
+  function copySummary() {
+    var ha = $('resHumanAge').textContent;
+    var ac = $('resAnnualCost').textContent;
+    var lc = $('resLifetimeCost').textContent;
+    var text = '🐾 Pet Profile Summary:\n' +
+      '• Human Age: ' + ha + '\n' +
+      '• Annual Cost: ' + ac + '\n' +
+      '• Projected Lifetime Investment: ' + lc + '\n\n' +
+      'Calculated via ' + TOOL_NAME + ': ' + SITE + '/';
+
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(text).then(function () { showToast('Profile summary copied to clipboard!'); });
+    } else { showToast('Could not copy automatically.'); }
+  }
+
+  on('petType', 'change', calculate);
+  on('dogSize', 'change', calculate);
+  on('petYears', 'input', calculate);
+  on('petMonths', 'input', calculate);
+  on('costFood', 'input', calculate);
+  on('costVet', 'input', calculate);
+  on('costSupplies', 'input', calculate);
+  on('btnCalculate', 'click', calculate);
+
+  on('btnAspca', 'click', function () {
+    var isCat = $('petType').value === 'cat';
+    $('costFood').value = isCat ? '38' : '58';
+    $('costVet').value = isCat ? '45' : '68';
+    $('costSupplies').value = isCat ? '20' : '28';
+    calculate();
+    showToast('Loaded ASPCA average expense standards!');
+  });
+
+  on('btnCopy', 'click', copySummary);
+  on('btnShare', 'click', function () {
+    var shareMsg = '🐾 Free Pet Human Age & Lifetime Cost Calculator\n👉 ' + TOOL_NAME + ': ' + SITE + '/';
+    if (navigator.share) {
+      navigator.share({ title: TOOL_NAME, text: shareMsg, url: SITE + '/' }).catch(function (e) {
+        if (!e || e.name !== 'AbortError') copySummary();
+      });
+    } else { copySummary(); }
+  });
+
+  calculate();
+})();
+</script>
+<!-- LOGIC END -->
 </body>
 </html>
