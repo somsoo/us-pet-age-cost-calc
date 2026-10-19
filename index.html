@@ -151,6 +151,22 @@ input[type=number],select{width:100%;font:inherit;font-size:1rem;padding:8px 10p
   .ad-bottom { min-height: 280px !important; }
   .ad-bottom ins { min-height: 280px !important; }
 </style>
+<style id="global-quality-shield">
+  html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+  .ad-bottom, .ad-bottom ins {
+    min-height: 280px !important;
+    background: transparent !important;
+  }
+  :focus-visible {
+    outline: 2px solid #2563eb !important;
+    outline-offset: 2px !important;
+  }
+</style>
 </head>
 <body>
 <header class="header">
@@ -192,11 +208,11 @@ input[type=number],select{width:100%;font:inherit;font-size:1rem;padding:8px 10p
       <div class="row" style="margin-top:6px;">
         <div>
           <label class="lbl" for="petYears">Age (Years)</label>
-          <input type="number" id="petYears" min="0" max="25" value="3">
+          <input type="number" id="petYears" min="0" max="25" value="3" inputmode="numeric">
         </div>
         <div>
           <label class="lbl" for="petMonths">Age (Months)</label>
-          <input type="number" id="petMonths" min="0" max="11" value="0">
+          <input type="number" id="petMonths" min="0" max="11" value="0" inputmode="numeric">
         </div>
       </div>
 
@@ -204,15 +220,15 @@ input[type=number],select{width:100%;font:inherit;font-size:1rem;padding:8px 10p
       <div class="row">
         <div>
           <label class="lbl" for="costFood">Food &amp; Treats ($)</label>
-          <input type="number" id="costFood" min="0" max="500" value="55">
+          <input type="number" id="costFood" min="0" max="500" value="55" inputmode="numeric">
         </div>
         <div>
           <label class="lbl" for="costVet">Vet &amp; Insurance ($)</label>
-          <input type="number" id="costVet" min="0" max="1000" value="65">
+          <input type="number" id="costVet" min="0" max="1000" value="65" inputmode="numeric">
         </div>
         <div>
           <label class="lbl" for="costSupplies">Grooming &amp; Gear ($)</label>
-          <input type="number" id="costSupplies" min="0" max="500" value="25">
+          <input type="number" id="costSupplies" min="0" max="500" value="25" inputmode="numeric">
         </div>
       </div>
 
